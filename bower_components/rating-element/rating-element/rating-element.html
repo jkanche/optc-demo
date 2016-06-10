@@ -1,0 +1,14 @@
+<html><head><link rel="import" href="../bower_components/polymer/polymer.html">
+
+</head><body><dom-module id="rating-element">
+  <template>
+    <link rel="stylesheet" href="rating-element.css">
+    <div id="rating">
+      <template is="dom-repeat" items="{{rates}}" index-as="i">
+        <div class$="{{computeSymbol(i, index)}}"></div>
+      </template>
+    </div>
+  </template>
+  <script>!function(t){var e="symbol symbol-empty",n="symbol symbol-filled";Polymer({is:"rating-element",properties:{start:{type:Number,value:0},stop:{type:Number,value:5},step:{type:Number,value:1},readonly:{type:Boolean,value:!1},value:{type:Number,observer:"valueChanged"},empty:{type:String,value:e},filled:{type:String,value:n},symbols:{type:String}},indexToRate:function(t){return this.start+t*this.step},rateToIndex:function(t){return Math.max(Math.ceil((t-this.start)/this.step),0)},contains:function(t){var e=this.step>0?this.start:this.stop,n=this.step>0?this.stop-1:this.start+1;return t>=e&&n>=t&&(this.start+t)%this.step===0},computeSymbol:function(t,e){return"rating-symbol "+(e>=t?this.filled:this.empty)},attached:function(){this.async(function(){for(var t=this,e=this.$.rating.getElementsByClassName("rating-symbol"),n=0;n<e.length;n++)e[n].addEventListener("click",function(e){return function(){t.readonly||(t.value=t.indexToRate(e),t.fire("change"))}}(n)),e[n].addEventListener("mouseenter",function(e){return function(){t.readonly||(t.index=e)}}(n)),e[n].addEventListener("mouseleave",function(e){return function(){t.readonly||(t.index=t.rateToIndex(t.value))}}(n));if(this.symbols){var s=document.createElement("link");s.rel="stylesheet",s.href=this.symbols,Polymer.dom(this.root).appendChild(s)}})},ready:function(){this.index=this.rateToIndex(this.value),this.rates=new Array(this.rateToIndex(this.stop))},valueChanged:function(e){var n=parseInt(e,10);!isNaN(n)&&this.contains(n)||(this.value=t),this.index=this.rateToIndex(this.value)}})}();</script>
+</dom-module>
+</body></html>

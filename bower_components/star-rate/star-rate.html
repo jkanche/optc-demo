@@ -1,0 +1,31 @@
+<html><head><link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../core-icons/core-icons.html">
+
+</head><body><polymer-element name="star-rate" attributes="stars value readOnly">
+
+    <template>
+        <div>
+            <template repeat="{{n in currentStars}}">
+                <style>core-icon:hover{cursor:pointer;}</style>
+                <core-icon icon="{{n <= value ? 'star' : 'star-outline'}}" hidden?="{{(n-value)==0.5}}" data-item="{{n}}" on-mouseout="{{onMouseout}}" on-click="{{setvalue}}">
+                    <div flex="" style="width: 100%; height: 100%" layout="" horizontal="">
+                        <div flex="" on-mouseover="{{halfStar}}" style="width: 50%;height: 100%" data-item="{{n-0.5}}"></div>
+                        <div flex="" on-mouseover="{{fullStar}}" style="width: 50%;height: 100%" data-item="{{n}}"></div>
+                    </div>
+                </core-icon>
+
+                <core-icon icon="star-half" hidden?="{{value!=n-0.5}}" on-click="{{setvalue}}" data-item="{{n-0.5}}" on-mouseout="{{onMouseout}}">
+                    <div flex="" style="width: 100%; height: 100%" layout="" horizontal="">
+                        <div flex="" on-mouseover="{{halfStar}}" style="width: 50%;height: 100%" data-item="{{n-0.5}}"></div>
+                        <div flex="" on-mouseover="{{fullStar}}" style="width: 50%;height: 100%" data-item="{{n}}"></div>
+                    </div>
+                </core-icon>
+
+            </template>
+        </div>
+
+    </template>
+
+    <script>Polymer("star-rate",{"default":this.value,readOnly:!1,rated:!1,stars:5,value:0,onHovered:function(t,a,e){this.readOnly||this.rated||(this.value=parseFloat(e.dataset.item,10))},ready:function(){this.currentStars=[];for(var t=0;t<=this.stars-1;t++)this.currentStars.push(t+1);this["default"]=this.value},setvalue:function(t,a,e){this.readOnly||this.rated||(this.value=parseFloat(e.dataset.item,10),this.rated=!0)},halfStar:function(t,a,e){this.readOnly||this.rated||(this.value=parseFloat(e.dataset.item,10))},fullStar:function(t,a,e){this.readOnly||this.rated||(this.value=parseFloat(e.dataset.item,10))},onMouseout:function(t,a,e){this.readOnly||this.rated||(this.value=this["default"])}});</script>
+</polymer-element>
+</body></html>

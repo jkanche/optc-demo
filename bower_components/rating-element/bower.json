@@ -1,0 +1,31 @@
+{
+  "name": "rating-element",
+  "version": "1.0.0",
+  "authors": [
+    "dreyescat <dreyes.cat@gmail.com>"
+  ],
+  "description": "A rating web component a la python range",
+  "keywords": [
+    "rating",
+    "rate",
+    "vote",
+    "polymer",
+    "web-components"
+  ],
+  "main": "rating-element.html",
+  "license": "MIT",
+  "homepage": "https://github.com/dreyescat/rating-element/",
+  "ignore": [
+    "**/.*",
+    "bower_components"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "polymer-test-tools": "Polymer/polymer-test-tools#>=0.4.0 <1.0.0",
+    "fontawesome": "~4.2.0",
+    "typicons": "~2.0.6"
+  }
+}
